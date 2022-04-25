@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/PruebaErasmusu/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/PruebaErasmusu/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
+    </ul>
+</div>
+<div>
+    <button onclick=cargarDatos()>pulsa</button>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function cargarDatos()
+        {
+            $.ajax({
+                url: "http://feeds.spotahome.com/ads-housinganywhere.json",
+                type: "GET",                                      
+                headers: {                                  
+                    "X-Requested-With": XMLHttpRequest
+                },
+                success:function(result){
+                    console.log(result)
+                },
+                error:function(error){
+                    console.log("error", error)
+                }
+            });
+        }
+    </script>
+{% endblock %}
