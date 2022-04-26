@@ -17,4 +17,9 @@ class HomeController extends AbstractController
             'data' => 'data',
         ]);
     }
+
+    public function chargeData($data)
+    {
+        dd($data);
+    }
 }
